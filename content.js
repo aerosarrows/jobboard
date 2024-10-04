@@ -41,7 +41,7 @@ function isCareerPage() {
   
   function findJobBoard() {
     const searchTerms = ['search', 'view', 'see', 'current', 'open', 'career'];
-    const jobRelatedTerms = ['job', 'role', 'position', 'opening', 'opportunit'];
+    const jobRelatedTerms = ['job', 'role', 'position', 'opening', 'opportunit', 'career'];
   
     const buttons = document.querySelectorAll('button, a');
     for (let button of buttons) {
