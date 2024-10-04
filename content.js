@@ -1,6 +1,6 @@
 // Function to check if the current URL is likely a career page
 function isCareerPage() {
-  const careerTerms = ['career', 'job', 'opportunit', 'position', 'opening'];
+  const careerTerms = ['career', 'job', 'opportunit', 'position', 'opening', 'role'];
   const currentUrl = window.location.href.toLowerCase();
   return careerTerms.some(term => currentUrl.includes(term));
 }
@@ -9,7 +9,6 @@ function isCareerPage() {
 function addButton() {
     console.log("Attempting to add button");
     if (!isCareerPage()) {
-        console.log("Not a career page, button not added");
         return;
     }
 
@@ -48,7 +47,6 @@ if (document.readyState === 'loading') {
     console.log("Document still loading, adding DOMContentLoaded listener");
     document.addEventListener('DOMContentLoaded', addButton);
 } else {
-    console.log("Document already loaded, running addButton immediately");
     addButton();
 }
 
@@ -88,7 +86,6 @@ function findJobBoard() {
             return;
         }
     }
-    console.log('No job board button found in the main content area.');
     alert('No job board button found in the main content area.');
 }
 function isInHeaderOrFooter(element) {
@@ -127,7 +124,6 @@ function highlightButton(button) {
     document.head.appendChild(styleElement);
 
     button.style.animation = 'pulse .5s infinite';
-    console.log("Button highlighted and pulsing animation added");
 }
 
 
@@ -136,68 +132,7 @@ function scrollToButton(button) {
   button.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
-// Function to start the auto-click timer
-function startAutoClickTimer(button) {
-    console.log("Starting auto-click timer");
-    let countdown = 5;
-    const countdownElement = document.createElement('div');
-    Object.assign(countdownElement.style, {
-        position: 'fixed',
-        top: '20px',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        backgroundColor: 'rgba(0, 0, 0, 0.7)',
-        color: 'white',
-        padding: '10px',
-        borderRadius: '5px',
-        zIndex: '10000'
-    });
-    document.body.appendChild(countdownElement);
-
-    const timer = setInterval(() => {
-        countdownElement.textContent = `Auto-redirecting in ${countdown} seconds...`;
-        console.log(`Countdown: ${countdown}`);
-        countdown--;
-
-        if (countdown < 0) {
-            clearInterval(timer);
-            countdownElement.remove();
-            console.log("Timer finished, attempting to click button");
-            simulateClick(button);
-        }
-    }, 1000);
-}
-
-function simulateClick(element) {
-    console.log("Simulating click on element:", element);
-    
-    if (element.tagName.toLowerCase() === 'a' && element.href) {
-        console.log("Element is an anchor with href. Navigating to:", element.href);
-        window.location.href = element.href;
-    } else if (element.tagName.toLowerCase() === 'button' || 
-               (element.tagName.toLowerCase() === 'input' && element.type === 'button')) {
-        console.log("Element is a button. Clicking it.");
-        element.click();
-    } else {
-        console.log("Element is not a standard clickable element. Trying generic click.");
-        const event = new MouseEvent('click', {
-            view: window,
-            bubbles: true,
-            cancelable: true
-        });
-        element.dispatchEvent(event);
-    }
-
-    // Check if navigation occurred
-    setTimeout(() => {
-        console.log("Current URL after click attempt:", window.location.href);
-    }, 1000);
-}
-
-// Main execution
 if (isCareerPage()) {
-  console.log("Career page detected. Adding 'Find Job Board' button.");
   addButton();
 } else {
-  console.log("Not a career page. 'Find Job Board' button will not be added.");
 }
