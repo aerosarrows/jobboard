@@ -1,0 +1,16 @@
+{
+    "manifest_version": 3,
+    "name": "Moose Job Board Finder",
+    "version": "1.0", 
+    "action": {
+        "default_icon": "img/moose_icon.png"},
+    "description": "Adds a button to find the actual job board on career pages",
+    "permissions": ["activeTab"],
+    "content_scripts": [
+        {
+        "matches": ["<all_urls>"],
+        "js": ["content.js"],
+        "css": ["styles.css"]
+    }
+  ]
+}
