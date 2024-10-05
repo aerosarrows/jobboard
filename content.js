@@ -1,6 +1,6 @@
 // Function to check if the current URL is likely a career page
 function isCareerPage() {
-    const careerTerms = ['career', 'job', 'opportunit', 'position', 'opening', 'role'];
+    const careerTerms = ['career', 'careers', 'job', 'opportunit', 'position', 'opening', 'role'];
     const currentUrl = window.location.href.toLowerCase();
     return careerTerms.some(term => currentUrl.includes(term));
   }
@@ -18,30 +18,32 @@ function isCareerPage() {
           return;
       }
   
-      const button = document.createElement('button');
-      button.textContent = 'Find Job Board';
-      button.id = 'job-board-finder-button';
-      Object.assign(button.style, {
-          position: 'fixed',
-          bottom: '20px',
-          left: '20px',
-          zIndex: '9999999',
-          padding: '10px 20px',
-          fontSize: '16px',
-          color: 'white',
-          backgroundColor: '#4CAF50',
-          border: 'none',
-          borderRadius: '5px',
-          cursor: 'pointer',
-          boxShadow: '0 2px 5px rgba(0,0,0,0.3)',
-          maxWidth: '150px'
-      });
-  
-      button.addEventListener('click', findJobBoard);
-  
-      document.body.appendChild(button);
-      console.log("Button added to page");
-  }
+       setTimeout(() => {
+        const button = document.createElement('button');
+        button.textContent = 'Find Job Board';
+        button.id = 'job-board-finder-button';
+        Object.assign(button.style, {
+            position: 'fixed',
+            bottom: '20px',
+            left: '20px',
+            zIndex: '9999999',
+            padding: '10px 20px',
+            fontSize: '16px',
+            color: 'white',
+            backgroundColor: '#4CAF50',
+            border: 'none',
+            borderRadius: '5px',
+            cursor: 'pointer',
+            boxShadow: '0 2px 5px rgba(0,0,0,0.3)',
+            maxWidth: '150px'
+        });
+
+        button.addEventListener('click', findJobBoard);
+
+        document.body.appendChild(button);
+        console.log("Button added to page");
+    }, 2000); // 2000 milliseconds = 2 seconds delay
+}
    
   if (document.readyState === 'loading') {
       console.log("Document still loading, adding DOMContentLoaded listener");
@@ -56,8 +58,8 @@ let jobBoardButtons = [];
 
 function findJobBoard() {
     console.log("Finding job board");
-    const searchTerms = ['search', 'view', 'see', 'current', 'open', 'career'];
-    const jobRelatedTerms = ['job', 'role', 'position', 'opening', 'opportunit', 'career'];
+    const searchTerms = ['search', 'view', 'see', 'current', 'open', 'career', 'join us'];
+    const jobRelatedTerms = ['job', 'role', 'position', 'opening', 'opportunit', 'career', 'join us'];
 
     let mainContent = document.querySelector('main') || 
                       document.querySelector('#main-content') || 
